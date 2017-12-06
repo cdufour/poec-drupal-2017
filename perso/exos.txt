@@ -57,6 +57,11 @@ Le pied de page devra contenir ces informations:
 Ces informations pourront être modifiées par un administrateur
 ---
 
+---
+Sur la page /players, mettre une marge de 10px entre
+le prénom du joueur et sa photo
+---
+
 
 
 
