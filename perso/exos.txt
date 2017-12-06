@@ -1,0 +1,69 @@
+*** EXOS ***
+
+---
+Créer une nouvelle page "Test"
+Afficher sur la page :
+du texte Lorem ipsum
++ 2 photos placées l'une à côté de l'autre sous le texte
+Inclure cette page dans le menu principal
+URL de la page: /test
+---
+
+---
+Désactiver (masquer) les tags des articles affichés en mode Teaser
+---
+
+---
+Créer une nouvelle vue "Teams" affichant la totalité
+des équipes. Cette vue devra être accessible depuis
+la navigation principale (nouvel onglet dans le menu)
+On affichera uniquement le nom de l'équipe
+---
+
+---
+Ajouter un champ (field) "goals" au content-type Player
+Mettre à jour quelques joueurs en leur attribuant
+un certain nombre de buts
+Afficher dans la région Sidebar-first un block
+affichant les 3 meilleurs buteurs par ordre
+de buts marqués. Exemple:
+Del Piero (300)
+Cavani (120)
+Buffon (0)
+---
+
+
+---
+Permettre au rôle Schiavo de créer/d'éditer/supprimer tous
+les content-types (les siens et ceux des autres)
+- League
+- Articles
+- Basic pages
+
+Créer un rôle Servitore:
+- Mêmes permissions que Schiavo + Administrer les blocks
+---
+
+
+----- THEMING ---
+
+---
+Créer et styliser un pied page.
+Définir une couleur de fond, taille de police, etc.
+Le pied de page devra contenir ces informations:
+  Lien vers une page "Mentions légales" (à créer)
+  La mention "Copyright 2017 Tous droits réservés"
+  L'adresse email du webmaster
+Ces informations pourront être modifiées par un administrateur
+---
+
+
+
+
+
+
+
+
+
+
+----------

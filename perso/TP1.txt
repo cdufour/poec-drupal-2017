@@ -1,0 +1,34 @@
+***  TP1 Administration Drupal ***
+
+1. Ajouter un champ "Photo" au content-type Player.
+Mettre à jour quelques joueurs en leur donnant
+une photo.
+En mode de visualisation Teaser, la photo devra avoir
+les dimensions suivantes: 100px x 50px (créer un style d'image)
+
+2. Créer une page Galerie avec les caractéristiques suivantes:
+- afficher l'ensemble des photos de joueur
+- exposer un filtre pour le nom du joueur
+- être accessible depuis le menu principal (onglet "Galerie")
+
+3. Ajouter un content-type "Game".
+Ce content-type permettra d'enregistrer des rencontres de football.
+Structure d'une rencontre
+Team1, Score1, Team2, Score2, Date, Place, League, Attendance (affluence)
+
+4. Créer une page "Rencontres" affichant un tableau de rencontres
+Exposer des filtres pour Team 1 et Team 2. (A améliorer par Module perso)
+Exemple: je souhaite
+visualiser les rencontres où la Juve à jouer
+à domicile (champ Team 1) ou à l'extérieur (champ Team 2).
+Le tableau devra être trié par date de la rencontre
+(de la plus récente à la plus anciennce)
+Ajouter un lien vers cette page dans le menu principal
+Permettre aux Rôles Schiavo et Servitore d'ajouter/modifier/Supprimer
+des rencontres.
+Enregistrer plusieurs rencontres en tant que l'utilisateur schiavo1.
+
+5. Dans la région Sidebar-first, placer un block affichant
+les trois dernières rencontres enregistrées.
+Ce bloc affichera également un lien vers l'ensemble des recontres (page Rencontres)
+Ce block sera visible uniquement par le rôle Administrator

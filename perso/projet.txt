@@ -1,0 +1,9 @@
+Un client vous demande de réaliser une application web
+permettant d'enregistrer
+
+- des équipes de football
+- des joueurs
+- des championnats
+
+Une équipe de foot sera lié à un championnat
+Des joueurs seront liés à une équipe

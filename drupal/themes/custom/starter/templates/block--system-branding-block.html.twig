@@ -1,0 +1,13 @@
+{% extends "block.html.twig" %}
+
+{% block content %}
+  {% if site_name %}
+    <div id="site_name">
+      <a
+        href="{{ path('<front>') }}"
+        title="{{ 'Home'|t }}" rel="home">
+        Foot<span style="color:#1D2B14">issimo</span> !</a>
+    </div>
+  {% endif %}
+  {{ site_slogan }}
+{% endblock %}

@@ -1,0 +1,14 @@
+# Se connecter au serveur Mysql
+mysql -u root -p
+
+#Afficher toutes les bases
+> show databases;
+
+#Créer une base de données
+> create database nom_de_la_base;
+
+#Supprimer une base de données
+> drop database nom_de_la_base;
+
+# Importer une base de données SQL
+mysql -u root -p nom_de_la_base < fichier.sql

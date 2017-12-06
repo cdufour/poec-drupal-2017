@@ -1,0 +1,88 @@
+
+body {font-size: 10pt;}
+h1 {font-size: 2em;}
+h2 {font-size: 1.8em;}
+
+/* Header */
+header#site_header {
+  height: 200px;
+  background: url('../img/background.jpg') #A7D826 0 -410px no-repeat;
+}
+
+div#block-starter-branding {
+  position: relative;
+  top: 50px;
+  left: 200px
+}
+
+div#site_name {
+  background-color: white;
+  width: 220px;
+  opacity: .8;
+  padding: 8px
+}
+
+div#site_name a {
+  font-size: 36px;
+  color: #417621;
+  font-family: Verdana, Arial, sans-serif;
+  text-decoration: none
+}
+
+
+/* Menu principal */
+nav#block-starter-main-menu {
+  position: relative;
+  top: 75px
+}
+
+nav#block-starter-main-menu ul {
+  list-style: none
+}
+
+nav#block-starter-main-menu ul li {
+  display: inline-block;
+  background-color: #588246;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 1.1em;
+  border: 1px white solid;
+  margin-right: 10px
+}
+
+nav#block-starter-main-menu ul li:hover {
+  background-color: #1D2B14;
+}
+
+nav#block-starter-main-menu ul li a {
+  color: white;
+  text-decoration: none
+}
+
+nav#block-starter-main-menu h2 {
+  display: none
+}
+
+/* Sidebar */
+
+div.sidebar_block {
+  background-color: #EEE;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 20px 0
+}
+
+div.sidebar_block h2 {
+  color: #1D2B14;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #777;
+}
+
+
+
+
+
+
+
+
+/*** ****/

@@ -1,0 +1,5 @@
+drupal/core
+drupal/profiles
+drupal/vendor
+
+drupal/*.*
