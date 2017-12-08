@@ -1,0 +1,32 @@
+
+{% if label_hidden %}
+  {% if multiple %}
+    <div{{ attributes }}>
+      {% for item in items %}
+        <div{{ item.attributes }}>{{ item.content }}</div>
+      {% endfor %}
+    </div>
+  {% else %}
+    {% for item in items %}
+      <div{{ attributes }}>{{ item.content }}</div>
+    {% endfor %}
+  {% endif %}
+{% else %}
+
+  <div class="description">
+    <div{{ attributes }}>
+      <div{{ title_attributes }}>
+      <strong class="description_label">{{ label }}</strong></div>
+      {% if multiple %}
+        <div>
+      {% endif %}
+      {% for item in items %}
+        <div{{ item.attributes }} class="description_content">{{ item.content }}</div>
+      {% endfor %}
+      {% if multiple %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+{% endif %}

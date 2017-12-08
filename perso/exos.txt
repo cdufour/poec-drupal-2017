@@ -63,6 +63,14 @@ le prénom du joueur et sa photo
 ---
 
 
+--
+1. Ajouter une région 'preheader' à positionner avant la region header
+2. Placer/styliser le menu de login/logout dans la région preheader
+3. Donner au block Search une apparence similaire aux autres blocks
+de la région sidebar
+--
+
+
 
 
 
