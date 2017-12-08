@@ -7,6 +7,9 @@ if (jQuery) {
     /*** CIBLAGE ***/
     var description_labels = $('div.description strong.description_label');
     var player_names = $('div.sidebar_block div.views-field-nothing a');
+    var cb_display_photos = $('input#cbDisplayPhotos');
+    var players_photos = $('article.player img');
+
 
     /*** FONCTIONS ***/
     function displayContent() {
@@ -34,13 +37,20 @@ if (jQuery) {
 
     }
 
+    function displayPlayerPhotos() {
+      players_photos.toggle();
+    }
+
     /*** EVENEMENTS ***/
 
     // affichage/masquage du champ description
     description_labels.on('click', displayContent);
+
     player_names
       .on('mouseover', displayPlayerPhoto)
       .on('mouseleave', displayPlayerPhoto);
+
+    cb_display_photos.on('click', displayPlayerPhotos);
 
   })(jQuery)
 

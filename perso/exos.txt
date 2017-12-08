@@ -70,6 +70,12 @@ le prénom du joueur et sa photo
 de la région sidebar
 --
 
+--
+Sur la page /players, ajouter une case à cocher "Afficher photos"
+Lorsque la case est cochée les photos de joueurs sont visibles
+Lorsque la case est décochée les photos de joueurs sont masquées
+--
+
 
 
 
