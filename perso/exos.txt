@@ -12,8 +12,8 @@ URL de la page: /test
 ---
 Désactiver (masquer) les tags des articles affichés en mode Teaser
 ---
-
 ---
+
 Créer une nouvelle vue "Teams" affichant la totalité
 des équipes. Cette vue devra être accessible depuis
 la navigation principale (nouvel onglet dans le menu)
@@ -77,7 +77,15 @@ Lorsque la case est décochée les photos de joueurs sont masquées
 --
 
 
+----- JS / AJAX -----
 
+--
+Ajouter dans le dom un bouton 'Démarrer slideshow'
+Au clic sur ce bouton, démarrer l'animation
+
+bonus: donner à l'utilisateur la possiblité d'indiquer la durée
+de l'intervalle
+--
 
 
 
