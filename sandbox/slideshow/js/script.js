@@ -10,12 +10,17 @@ var app = {
 // CIBLAGE
 var messages = document.getElementsByClassName('message'); // renvoie objet
 var btnSlideshow = document.getElementById('btnSlideshow');
+var selectSpeed = document.getElementById('selectSpeed');
+
 
 // EVENEMENTS
 btnSlideshow.addEventListener('click', slideshow);
 
 // FONCTIONS
 function slideshow() {
+
+  // prise en compte de la vitesse choisie par le client
+  app.config.interval = selectSpeed.value;
 
   if (app.config.slideshow) {
     btnSlideshow.innerText = 'Arrêter slideshow';
