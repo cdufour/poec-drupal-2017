@@ -1,0 +1,21 @@
+body {
+  font-family: Verdana, sans-serif;
+  font-size: 12pt
+}
+
+div#bgSearchResults {
+  background-color: #222;
+  width: 240px;
+  border-radius: 0 0 4px 4px
+}
+
+ul#searchResults {
+  list-style: none;
+  color: white;
+  margin-top: 0
+}
+
+ul#searchResults li {
+  padding: 4px;
+  font-size: .8em
+}

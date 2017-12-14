@@ -87,6 +87,18 @@ bonus: donner à l'utilisateur la possiblité d'indiquer la durée
 de l'intervalle
 --
 
+--
+Dans l'application "searchTool", afficher dans le DOM
+le nombre de cartes trouvées lors de la recherche
+--
+
+
+
+
+
+
+
+
 
 
 
