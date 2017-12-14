@@ -31,20 +31,19 @@ function slideshow() {
     // slideshow on
     var i = 0;
     var indice_max = app.messages.length - 1;
-    var indice_prev = indice_max;
 
     app.animation = setInterval(function() {
       app.indice_curr = i;
       message.innerText = app.messages[i].name;
 
       if (i == indice_max) i = -1;
-      i++;
+      getDatai++;
 
     }, app.config.interval)
 
   } else {
     stop();
-    message.innerText = '';
+    message.innerText = 'init';
     btnSlideshow.innerText = 'Démarrer slideshow';
     app.config.slideshow = true;
   }
@@ -52,12 +51,6 @@ function slideshow() {
 
 function stop() {
   clearInterval(app.animation);
-}
-
-function clear() {
-  for(var i=0; i < messages.length; i++) {
-    messages[i].style.display = 'none';
-  }
 }
 
 function getData() {
