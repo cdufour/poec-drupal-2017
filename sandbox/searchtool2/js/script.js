@@ -122,6 +122,12 @@ function init() {
   // dans le cas où le navigateur mémorise la dernière valeur saisie
   // on force l'input à recevoir cette valeur par défaut:
   textSearch.value = 'Chercher une carte...';
+
+  promise.get('search.php').then(function(err, res, xhr) {
+    var div = document.createElement('div');
+    div.innerHTML = res;
+    document.body.appendChild(res);
+  });
 }
 
 
