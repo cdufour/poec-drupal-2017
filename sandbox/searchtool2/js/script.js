@@ -126,7 +126,7 @@ function init() {
   promise.get('search.php').then(function(err, res, xhr) {
     var div = document.createElement('div');
     div.innerHTML = res;
-    document.body.appendChild(res);
+    document.body.appendChild(div);
   });
 }
 
