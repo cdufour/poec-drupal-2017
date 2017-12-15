@@ -1,6 +1,7 @@
 var app = {
   inputMin: 3,
-  cards: []
+  cards: [],
+  cardsFiltered: null
 };
 
 // CIBLAGE
@@ -12,28 +13,22 @@ var nbResults         = document.getElementById('nbResults');
 textSearch.addEventListener('keyup', function(e) {
   searchResults.innerHTML = '';
   nbResults.innerHTML = '';
-
+  // le paramètre e contient des infos sur la saisie
+  // ex: e.key => "b" // lettre b saisie
   if (this.value.length >= app.inputMin) {
 
     var searchedValue = this.value.toLowerCase();
 
-    // To Do: requête ajax pour obtenir données filtrées par serveur
     // filtrage
-    var url = 'search.php?s=' + searchedValue;
-    promise.get(url).then(function(err, res, xhr) {
-      // instructions à éxécuter lorsque la réponse
-      // du serveur nous parvient
-      app.cards = JSON.parse(res); // conversion de la chaîne
-      // de caractères json en tableau JS
-
-      displayResults(); // affichage des resultats dans le DOM
-
-      // affichage du nombre de cartes trouvées
-      nbResults.innerHTML =
-        '<strong>' + app.cards.length + '</strong>  carte(s) trouvée(s)';
-
+    var results = app.cards.filter(function(card) {
+      return card.name.toLowerCase().includes(searchedValue);
     });
+    app.cardsFiltered = results; // copie dans l'objet global
+    displayResults(); // affichage des resultats dans le DOM
 
+    // affichage du nombre de cartes trouvées
+    nbResults.innerHTML =
+      '<strong>' + results.length + '</strong>  carte(s) trouvée(s)';
   }
 
 });
@@ -45,10 +40,17 @@ textSearch.addEventListener('click', function() {
 // FONCTIONS
 function displayResults() {
   // affichage des résultats de la recherche
-  app.cards.forEach(function(card) {
+  app.cardsFiltered.forEach(function(card) {
     // à chaque itération, créatin d'un node li
     var li = document.createElement('li');
     li.innerHTML = cardMarkup(card);
+
+    // on cible le span portant le nom de la carte
+    // parmi les descendants du li
+    // li
+    //  div.card
+    //    img
+    //    span
     var spanCardName = li.childNodes[0].childNodes[1];
     spanCardName.addEventListener('mouseover', displayBigCardImg);
     spanCardName.addEventListener('mouseleave', displayBigCardImg);
@@ -75,7 +77,13 @@ function displayBigCardImg() {
 }
 
 function init() {
+  // dans le cas où le navigateur mémorise la dernière valeur saisie
+  // on force l'input à recevoir cette valeur par défaut:
   textSearch.value = 'Chercher une carte...';
+
+  promise.get('search.php').then(function(err, res, xhr) {
+    app.cards = JSON.parse(res);
+  });
 }
 
 

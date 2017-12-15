@@ -17,7 +17,14 @@ if (isset($_GET['s'])) {
   echo $cards_json; // envoie au client d'une réponse JSON
 
 } else {
-  echo 'Recherche incorrecte';
+  // renvoie la totalité des cartes
+  // requête sql
+  $q = "SELECT name, img FROM card";
+  $query = $db->prepare($q);
+  $query->execute();
+  $cards = $query->fetchAll(PDO::FETCH_ASSOC);
+  $cards_json = json_encode($cards);
+  echo $cards_json;
 }
 
 
