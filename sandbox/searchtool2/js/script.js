@@ -1,37 +1,6 @@
 var app = {
   inputMin: 3,
-  cards: [
-    {
-      name: 'Prof enragé',
-      body: 'Inflige 3 blessures au stagiaire ciblé',
-      img: 'card-carnage-tyrant.jpg'
-    },
-    {
-      name: 'Leçon terrible',
-      body: 'Tous les stagiaires sautent par la fenêtre',
-      img: 'card-huatli-warrior-poet.jpg'
-    },
-    {
-      name: 'Cours indigeste',
-      body: 'Le stagiaire ciblé souffre de maux de ventre',
-      img: 'card-jace-cunning-castaway.jpg'
-    },
-    {
-      name: 'Joie ultime',
-      body: 'Leçon comprise par tous',
-      img: 'card-serra-angel.jpg'
-    },
-    {
-      name: 'Absence probable',
-      body: 'La chaise ciblée reste inoccupée tant que le stagiaire est absent',
-      img: 'card-shivan-dragon.jpg'
-    },
-    {
-      name: 'Sommeil profond',
-      body: 'Tous les stagiaires sont pris d\'une irrésistible somnolence',
-      img: 'card-zombify.jpg'
-    },
-  ],
+  cards: [],
   cardsFiltered: null
 };
 
@@ -44,23 +13,12 @@ var nbResults         = document.getElementById('nbResults');
 textSearch.addEventListener('keyup', function(e) {
   searchResults.innerHTML = '';
   nbResults.innerHTML = '';
-  // le paramètre e contient des infos sur la saisie
-  // ex: e.key => "b" // lettre b saisie
-  if (this.value.length >= app.inputMin) {
-    // si la chaîne saisie est >= à la longueur minimale attendue
-    // on parcourt les données afin d'en extraire les éléments
-    // répond  console.log(result)ant au critère de sélection (contient la chaîne)
 
-    // var results = [];
-    // var searchedValue = this.value;
-    //
-    // app.cards.forEach(function(card) {
-    //   var name = card.name;
-    //   var result = name.includes(searchedValue);
-    //   if (result) results.push(card);
-    // });
+  if (this.value.length >= app.inputMin) {
+
     var searchedValue = this.value.toLowerCase();
 
+    // To Do: requête ajax pour obtenir données filtrées par serveur
     // filtrage
     var results = app.cards.filter(function(card) {
       return card.name.toLowerCase().includes(searchedValue);
@@ -86,13 +44,6 @@ function displayResults() {
     // à chaque itération, créatin d'un node li
     var li = document.createElement('li');
     li.innerHTML = cardMarkup(card);
-
-    // on cible le span portant le nom de la carte
-    // parmi les descendants du li
-    // li
-    //  div.card
-    //    img
-    //    span
     var spanCardName = li.childNodes[0].childNodes[1];
     spanCardName.addEventListener('mouseover', displayBigCardImg);
     spanCardName.addEventListener('mouseleave', displayBigCardImg);
@@ -123,7 +74,7 @@ function init() {
   // on force l'input à recevoir cette valeur par défaut:
   textSearch.value = 'Chercher une carte...';
 
-  promise.get('search.php').then(function(err, res, xhr) {
+  promise.get('search.php?s=ra').then(function(err, res, xhr) {
     var div = document.createElement('div');
     div.innerHTML = res;
     document.body.appendChild(div);

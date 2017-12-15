@@ -33,7 +33,7 @@ div.card img.big {
   width: 200px;
   position: absolute;
   top: 20px;
-  left: 10px;
+  left: 160px;
   display: none;
   z-index: 1;
   /* z-index: profondeur, plus l'indice est élevée plus
