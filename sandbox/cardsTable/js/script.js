@@ -4,6 +4,24 @@ var app = {
   config: {
     searchDefaultText: 'Rechercher dans le nom...',
     searchMin: 3
+  },
+  voca: {
+    creature: {fr: 'Créature'},
+    sorcery: {fr: 'Rituel'},
+    enchantement: {fr: 'Enchantement'},
+    red: {fr: 'Rouge'},
+    green: {fr: 'Vert'},
+    blue: {fr: 'Bleu'},
+    black: {fr: 'Noir'},
+    white: {fr: 'Blanc'},
+    multicolor: {fr: 'Multicolore'},
+    Nom: 'name',
+    Couleur: 'color',
+    Type: 'type'
+  },
+  sort: {
+    k: 'name',
+    asc: true
   }
 };
 
@@ -14,7 +32,7 @@ var cbCaseSensivity   = document.getElementById('cbCaseSensivity');
 var selectCardType    = document.getElementById('selectCardType');
 var selectCardColor   = document.getElementById('selectCardColor');
 var btnRemoveFilters  = document.getElementById('btnRemoveFilters');
-
+var thKsort           = document.getElementsByClassName('ksort');
 
 // EVENEMENTS
 txtCardName.addEventListener('click', function() {
@@ -56,6 +74,15 @@ btnRemoveFilters.addEventListener('click', function() {
 
 cbCaseSensivity.addEventListener('click', filterCards);
 
+// on attache un écouteur d'évément à tous les éléments ksort
+for(var i=0; i < thKsort.length; i++) {
+  thKsort[i].addEventListener('click', function() {
+    var ksort = app.voca[this.innerText];
+    app.sort.k = ksort;
+    app.sort.asc = !app.sort.asc;
+    console.log(app.sort);
+  })
+}
 
 // FONCTIONS
 function init() {
@@ -75,8 +102,10 @@ function displayCards() {
     var tr = document.createElement('tr');
     var html = '<td>' + (index+1) +'</td>';
     html += '<td>' + card.name + '</td>';
-    html += '<td>' + card.type + '</td>';
-    html += '<td>' + card.color + '</td>';
+    //html += '<td>' + app.voca[card.type].fr + '</td>';
+    //html += '<td>' + app.voca[card.color].fr + '</td>';
+    html += '<td>' + card.type_fr + '</td>';
+    html += '<td>' + card.color_fr + '</td>';
     tr.innerHTML = html;
     tableCards.appendChild(tr);
   });
@@ -112,6 +141,17 @@ function filterCards() {
 
     return cond1 && cond2 && cond3;
   });
+
+  // sort
+  if (app) {
+    app.cardsFiltered.sort(function(a, b) {
+      return (app.sort)
+        ? a.name > b.name
+        : a.name < b.name;
+    });
+  }
+
+
 
   displayCards(); // affichage des cartes filtrées
 

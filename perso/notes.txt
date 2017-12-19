@@ -1,1 +1,39 @@
 https://github.com/cdufour/poec-drupal-2017
+
+
+Installation lamp:
+sudo apt install apache2 php mysql-server libapache2-mod-php php-mysql
+
+Donner tous les droits sur dossier html:
+cd /var/www
+sudo chmod -R 777 html/
+
+Installation atom:
+sudo add-apt-repository ppa:webupd8team/atom
+sudo apt-get update
+sudo apt-get install atom
+
+
+sudo apt-get install php-xml
+
+
+
+*** JS sort ***
+var nom = ['Paul','Farid','Loubna','Tanguy','Alpha'];
+var notes = [12, 8, 12.4, 3.2, 20];
+var stagiaires = [
+  {name: 'Paul', note: 15},
+  {name: 'Farid', note: 8},
+  {name: 'Loubna', note: 18},
+  {name: 'Alpha', note: 21}
+];
+
+nom.sort();
+//console.log(nom);
+notes.sort(function(a,b) {
+  console.log(a - b)
+  return a - b;
+});
+//console.log(notes);
+stagiaires.sort();
+console.log(notes);

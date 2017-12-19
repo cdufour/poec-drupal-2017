@@ -93,6 +93,12 @@ le nombre de cartes trouvées lors de la recherche
 --
 
 
+--
+Dans l'application "cardsTable", afficher les types/couleurs des cartes
+en français (avec accents et majuscule initiale)
+--
+
+
 
 
 
