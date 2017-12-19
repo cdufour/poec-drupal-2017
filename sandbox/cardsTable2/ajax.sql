@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 19, 2017 at 11:56 AM
+-- Generation Time: Dec 19, 2017 at 04:47 PM
 -- Server version: 5.7.20-0ubuntu0.16.04.1
 -- PHP Version: 7.0.22-0ubuntu0.16.04.1
 
@@ -32,20 +32,21 @@ CREATE TABLE `card` (
   `body` text NOT NULL,
   `type` enum('creature','sorcery','enchantement','') NOT NULL,
   `color` enum('blue','red','green','black','white','multicolor') NOT NULL,
-  `img` varchar(255) NOT NULL
+  `img` varchar(255) NOT NULL,
+  `popularity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `card`
 --
 
-INSERT INTO `card` (`id`, `name`, `body`, `type`, `color`, `img`) VALUES
-(1, 'Shivan Dragon', '', 'creature', 'red', 'card-shivan-dragon.jpg'),
-(2, 'Serra Angel', '', 'creature', 'white', 'card-serra-angel.jpg'),
-(3, 'Zombify', '', 'sorcery', 'black', 'card-zombify.jpg'),
-(4, 'Call of Nature', '', 'enchantement', 'green', ''),
-(5, 'Nissa Angel', '', 'creature', 'multicolor', 'card-jace-cunning-castaway.jpg'),
-(6, 'Furious zomby', '', 'creature', 'black', '');
+INSERT INTO `card` (`id`, `name`, `body`, `type`, `color`, `img`, `popularity`) VALUES
+(1, 'Shivan Dragon', '', 'creature', 'red', 'card-shivan-dragon.jpg', 2),
+(2, 'Serra Angel', '', 'creature', 'white', 'card-serra-angel.jpg', 2),
+(3, 'Zombify', '', 'sorcery', 'black', 'card-zombify.jpg', 0),
+(4, 'Call of Nature', '', 'enchantement', 'green', '', 18),
+(5, 'Nissa Angel', '', 'creature', 'multicolor', 'card-jace-cunning-castaway.jpg', 6),
+(6, 'Furious zomby', '', 'creature', 'black', '', 0);
 
 --
 -- Indexes for dumped tables

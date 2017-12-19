@@ -126,12 +126,20 @@ function displayCards() {
 
   var hearts = document.getElementsByClassName('heart');
   for(var i=0; i < hearts.length; i++) {
-    hearts[i].addEventListener('click', function() {
+    hearts[i].addEventListener('click', function(e) {
+
+      // e.ctrlKey
+
       var spanPopularity = this.nextSibling;
 
       var indice = spanPopularity.innerText;
       var nb = parseInt(indice); // conversion de la string  en number
-      nb++; // incrémentation de l'indice
+
+      if (e.ctrlKey) {
+        if (nb > 0) nb--;
+      } else { // si la touche ctrl n'est pas enfoncée
+        nb++;
+      }
 
       // requête ajax POST
       promise
