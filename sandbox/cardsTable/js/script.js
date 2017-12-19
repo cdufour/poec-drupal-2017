@@ -80,7 +80,7 @@ for(var i=0; i < thKsort.length; i++) {
     var ksort = app.voca[this.innerText];
     app.sort.k = ksort;
     app.sort.asc = !app.sort.asc;
-    console.log(app.sort);
+    displayCards();
   })
 }
 
@@ -98,6 +98,16 @@ function init() {
 
 function displayCards() {
   tableCards.innerHTML = ''; // Nettoyage
+
+  // tri
+  app.cardsFiltered.sort(function(a,b) {
+    // si app.sort.asc vaut true tri de A -> Z
+    // sinon tri de Z -> A
+    return (app.sort.asc)
+      ? a[app.sort.k] > b[app.sort.k]
+      : a[app.sort.k] < b[app.sort.k];
+  });
+
   app.cardsFiltered.forEach(function(card, index) {
     var tr = document.createElement('tr');
     var html = '<td>' + (index+1) +'</td>';
