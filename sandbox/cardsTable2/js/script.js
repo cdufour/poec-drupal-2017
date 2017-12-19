@@ -1,6 +1,6 @@
 var app = {
   cards: null,
-  cardsFiltered: null,
+  cardsFiltered: [],
   config: {
     searchDefaultText: 'Rechercher dans le nom...',
     searchMin: 3
@@ -17,7 +17,8 @@ var app = {
     multicolor: {fr: 'Multicolore'},
     Nom: 'name',
     Couleur: 'color',
-    Type: 'type'
+    Type: 'type',
+    Popularité: 'popularity'
   },
   sort: {
     k: 'name',
@@ -91,7 +92,16 @@ function init() {
 
   promise.get('search.php').then(function(err, res, xhr) {
     app.cards = JSON.parse(res);
-    app.cardsFiltered = app.cards;
+    //app.cardsFiltered = app.cards;
+
+    app.cards.forEach(function(card) {
+      var popu = card.popularity;
+      card.popularity = parseInt(popu);
+      app.cardsFiltered.push(card);
+    });
+
+    console.log(app.cardsFiltered);
+
     displayCards();
   });
 }
@@ -198,8 +208,6 @@ function filterCards() {
         : a.name < b.name;
     });
   }
-
-
 
   displayCards(); // affichage des cartes filtrées
 
