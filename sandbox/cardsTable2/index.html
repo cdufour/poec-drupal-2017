@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Cards Table 2</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="text/javascript" src="js/promise.min.js"></script>
+  </head>
+  <body>
+    <h1>Cards Table 2</h1>
+    <div class="well">
+      <input id="txtCardName" type="text" value="Rechercher dans le nom...">
+      <input id="cbCaseSensivity" type="checkbox">Sensible à la casse
+      <select id="selectCardType">
+        <option value="0">Choisir un type</option>
+        <option value="creature">Créature</option>
+        <option value="sorcery">Rituel</option>
+        <option value="enchantement">Enchantement</option>
+      </select>
+      <select id="selectCardColor">
+        <option value="0">Choisir une couleur</option>
+        <option value="red">Rouge</option>
+        <option value="green">Vert</option>
+        <option value="blue">Bleu</option>
+        <option value="black">Noir</option>
+        <option value="white">Blanc</option>
+        <option value="multicolor">Multicolore</option>
+      </select>
+      <button id="btnRemoveFilters">Supprimer les filtres</button>
+  </div>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th class="ksort">Nom</th>
+          <th class="ksort">Type</th>
+          <th class="ksort">Couleur</th>
+          <th>Popularité</th>
+        </tr>
+      </thead>
+      <tbody id="tableCards"></tbody>
+    </table>
+
+    <script type="text/javascript" src="js/script.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+<!-- -->

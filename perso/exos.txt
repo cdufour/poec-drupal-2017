@@ -98,6 +98,14 @@ Dans l'application "cardsTable", afficher les types/couleurs des cartes
 en français (avec accents et majuscule initiale)
 --
 
+Dans l'application "cardsTable 2", ajouter au tableau
+une colonne "Popularité".
+Vous placerez dans cette colonne une icône de coeur.
+A droite du coeur apparaîtra un indice de popularité
+(exemple: 5) correspondant au nombre de votes/clics sur le coeur
+Le clic sur le coeur devra incrémenter l'indice de popularité
+--
+
 
 
 
