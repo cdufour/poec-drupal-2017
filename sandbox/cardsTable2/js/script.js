@@ -1,4 +1,5 @@
 var app = {
+  defaultImg: true,
   cards: null,
   cardsFiltered: [],
   config: {
@@ -101,7 +102,19 @@ function displayCards() {
   app.cardsFiltered.forEach(function(card, index) {
     var tr = document.createElement('tr');
     var html = '<td>' + (index+1) +'</td>';
-    html += '<td>' + card.name + '</td>';
+    html += '<td>';
+
+
+    if (card.img) { // une image est associée à cette carte
+      var img_path = 'img/cards/' + card.img;
+      // ajout de l'image dans le DOM
+      html += '<span class="cardName">' + card.name + '</span>';
+      html += '<img class="cardImg" alt="" src="' + img_path + '">';
+    } else {
+      html += '<span>' + card.name + '</span>';
+    }
+
+    html += '</td>';
     html += '<td>' + card.type_fr + '</td>';
     html += '<td>' + card.color_fr + '</td>';
     html += '<td>';
@@ -112,8 +125,9 @@ function displayCards() {
     tableCards.appendChild(tr);
   });
 
+  // ciblage des images de coeur
   var hearts = document.getElementsByClassName('heart');
-  for(var i=0; i < hearts.length; i++) {
+  for(var i=0; i<hearts.length; i++) {
     hearts[i].addEventListener('click', function(e) {
       var card_id = this.id; // identifiant de la carte
       var spanPopularity = this.nextSibling;
@@ -151,6 +165,20 @@ function displayCards() {
 
     })
   }
+
+  // ciblage des span contenant les noms de cartes
+  var cardNames = document.getElementsByClassName('cardName');
+  for(var i=0; i<cardNames.length; i++) {
+    cardNames[i].addEventListener('mouseover', function() {
+      var cardImg = this.nextSibling;
+      cardImg.style.display = 'inline'; // affichage de l'image
+    });
+    cardNames[i].addEventListener('mouseleave', function() {
+      var cardImg = this.nextSibling;
+      cardImg.style.display = 'none'; // masquage de l'image
+    });
+  }
+
 }
 
 function filterCards() {

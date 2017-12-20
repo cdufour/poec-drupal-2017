@@ -1,1 +1,14 @@
-th.ksort, img.heart {cursor:pointer}
+th.ksort, img.heart, span.cardName { cursor:pointer }
+
+tbody#tableCards td {
+  position: relative;
+}
+
+img.cardImg {
+  width: 150px;
+  position: absolute;
+  display: none;
+  z-index: 1
+}
+
+span.cardName:hover { color: orange }

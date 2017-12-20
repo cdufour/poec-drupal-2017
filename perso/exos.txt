@@ -113,8 +113,11 @@ Ajouter le tri par popularité
 --
 Dans l'application Cards Table 2:
 Au survol du nom de la carte, afficher la photo associée
---
 
+si le paramètre app.defaultImg vaut true:
+  Afficher une image par défaut pour la carte quand la propriété
+img n'est pas définie
+--
 
 
 

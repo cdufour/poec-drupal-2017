@@ -29,7 +29,7 @@ if (isset($_GET['s'])) {
   echo $cards_json; // envoie au client d'une réponse JSON
 
 } else {
-  $q = "SELECT id, name, type, color, popularity FROM card ORDER BY name ASC"; // renvoie la totalité des cartes
+  $q = "SELECT id, name, type, color, popularity, img FROM card ORDER BY name ASC"; // renvoie la totalité des cartes
   $query = $db->prepare($q);
   $query->execute();
   $cards = $query->fetchAll(PDO::FETCH_ASSOC);
