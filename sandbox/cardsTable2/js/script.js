@@ -110,8 +110,17 @@ function displayCards() {
       // ajout de l'image dans le DOM
       html += '<span class="cardName">' + card.name + '</span>';
       html += '<img class="cardImg" alt="" src="' + img_path + '">';
-    } else {
-      html += '<span>' + card.name + '</span>';
+    } else { // aucune image n'est associée la carte
+
+      // gestion d'une image par défaut
+      if (app.defaultImg) {
+        var defaulImg = 'img/avatar.jpg';
+        html += '<span class="cardName">' + card.name + '</span>';
+        html += '<img class="cardImg" alt="" src="' + defaulImg + '">';
+      } else {
+        html += '<span>' + card.name + '</span>';
+      }
+
     }
 
     html += '</td>';
