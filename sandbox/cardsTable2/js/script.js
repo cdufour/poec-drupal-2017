@@ -40,25 +40,6 @@ txtCardName.addEventListener('click', function() {
   this.value = '';
 })
 
-// txtCardName.addEventListener('keyup', function(e) {
-//   var searchedValue = this.value;
-//   if (searchedValue.length >= app.config.searchMin) {
-//     // filtrage par nom
-//     app.cardsFiltered = app.cards.filter(function(card) {
-//       // sensiblité à la casse
-//
-//       return (cbCaseSensivity.checked)
-//         ? card.name.includes(searchedValue)
-//         : card.name.toLowerCase().includes(searchedValue.toLowerCase());
-//
-//     });
-//   } else {
-//     app.cardsFiltered = app.cards;
-//   }
-//   displayCards();
-// })
-
-
 // filtrage par nom
 txtCardName.addEventListener('keyup', filterCards);
 
@@ -92,15 +73,14 @@ function init() {
 
   promise.get('search.php').then(function(err, res, xhr) {
     app.cards = JSON.parse(res);
-    //app.cardsFiltered = app.cards;
 
+    // itération sur les données d'origine afin
+    // de convertir l'indice en Number (règle le problème de tri)
     app.cards.forEach(function(card) {
       var popu = card.popularity;
       card.popularity = parseInt(popu);
       app.cardsFiltered.push(card);
     });
-
-    console.log(app.cardsFiltered);
 
     displayCards();
   });
@@ -122,8 +102,6 @@ function displayCards() {
     var tr = document.createElement('tr');
     var html = '<td>' + (index+1) +'</td>';
     html += '<td>' + card.name + '</td>';
-    //html += '<td>' + app.voca[card.type].fr + '</td>';
-    //html += '<td>' + app.voca[card.color].fr + '</td>';
     html += '<td>' + card.type_fr + '</td>';
     html += '<td>' + card.color_fr + '</td>';
     html += '<td>';
@@ -137,15 +115,12 @@ function displayCards() {
   var hearts = document.getElementsByClassName('heart');
   for(var i=0; i < hearts.length; i++) {
     hearts[i].addEventListener('click', function(e) {
-
-      // e.ctrlKey
-
+      var card_id = this.id; // identifiant de la carte
       var spanPopularity = this.nextSibling;
-
       var indice = spanPopularity.innerText;
       var nb = parseInt(indice); // conversion de la string  en number
 
-      if (e.ctrlKey) {
+      if (e.ctrlKey) { // touche ctrl enfoncée
         if (nb > 0) nb--;
       } else { // si la touche ctrl n'est pas enfoncée
         nb++;
@@ -153,12 +128,21 @@ function displayCards() {
 
       // requête ajax POST
       promise
-        .post('card-popularity.php', {id: this.id, popularity: nb})
+        .post('card-popularity.php', {id: card_id, popularity: nb})
         .then(function(err, res, xhr) {
           var res_decoded = JSON.parse(res);
           if (res_decoded.result) {
             // mise à jour de l'indice de popularité dans le dom
               spanPopularity.innerText = nb.toString();
+
+            // mise à jour de l'objet card dans la source de données
+            for(var i=0; i<app.cardsFiltered.length; i++) {
+              if (app.cardsFiltered[i].id === card_id) {
+                app.cardsFiltered[i].popularity = nb;
+                break; // sortie de boucle
+              }
+            }
+
           } else {
             // erreur SQL renvoyé au client
             // TO DO
@@ -223,11 +207,6 @@ function filterReset() {
 
 // démarrage
 init();
-
-
-
-
-
 
 
 
