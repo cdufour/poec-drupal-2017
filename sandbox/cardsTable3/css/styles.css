@@ -1,4 +1,4 @@
-th.ksort, img.heart, span.cardName { cursor:pointer }
+th.ksort, img.heart, span.cardName, span.cardEdition { cursor:pointer }
 
 tbody#tableCards td {
   position: relative;
@@ -12,3 +12,14 @@ img.cardImg {
 }
 
 span.cardName:hover { color: orange }
+
+div.editionDates {
+  background-color: orange;
+  border-radius: 4px;
+  width: 120px;
+  padding: 4px;
+  display: none;
+  position: absolute;
+  z-index: 1;
+  font-size: .8em
+}

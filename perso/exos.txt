@@ -125,7 +125,7 @@ Au niveau de l'application Cards Table 3
 1/ Ajouter une colonne "Illustrateur" qui affichera
 le nom de l'illustrateur de la carte.
 Cette information proviendra d'une table SQL "illustrator" en
-relation avec la table card.
+relation 1-1  avec la table card (à une carte correspond 1 illus.)
 Un illustrateur: id, lastname, firstname, country
 
 2/ Ajouter un filtre par Edition

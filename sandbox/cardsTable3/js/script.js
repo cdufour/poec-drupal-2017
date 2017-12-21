@@ -34,6 +34,7 @@ var txtCardName       = document.getElementById('txtCardName');
 var cbCaseSensivity   = document.getElementById('cbCaseSensivity');
 var selectCardType    = document.getElementById('selectCardType');
 var selectCardColor   = document.getElementById('selectCardColor');
+var selectCardEdition = document.getElementById('selectCardEdition');
 var btnRemoveFilters  = document.getElementById('btnRemoveFilters');
 var thKsort           = document.getElementsByClassName('ksort');
 
@@ -47,6 +48,9 @@ txtCardName.addEventListener('keyup', filterCards);
 
 // filrage par type
 selectCardType.addEventListener('change', filterCards);
+
+// filrage par edition
+selectCardEdition.addEventListener('change', filterCards);
 
 // filrage par couleur
 selectCardColor.addEventListener('change', filterCards);
@@ -125,7 +129,14 @@ function displayCards() {
     }
 
     html += '</td>';
-    html += '<td>' + card.edition + '</td>';
+    html += '<td>';
+    html += '<span class="cardEdition">' + card.edition.name + '</span>';
+    html += '<div class="editionDates">';
+    html += 'Début: ' + card.edition.date_start + '<br>';
+    html += 'Fin: ' + card.edition.date_end;
+    html += '</div>';
+    html += '</td>';
+    html += '<td>' + card.illustrator + '</td>';
     html += '<td>' + card.type_fr + '</td>';
     html += '<td>' + card.color_fr + '</td>';
     html += '<td>';
@@ -180,14 +191,15 @@ function displayCards() {
   // ciblage des span contenant les noms de cartes
   var cardNames = document.getElementsByClassName('cardName');
   for(var i=0; i<cardNames.length; i++) {
-    cardNames[i].addEventListener('mouseover', function() {
-      var cardImg = this.nextSibling;
-      cardImg.style.display = 'inline'; // affichage de l'image
-    });
-    cardNames[i].addEventListener('mouseleave', function() {
-      var cardImg = this.nextSibling;
-      cardImg.style.display = 'none'; // masquage de l'image
-    });
+    cardNames[i].addEventListener('mouseover', showNextElement);
+    cardNames[i].addEventListener('mouseleave', hideNextElement);
+  }
+
+  // ciblage des span contenant les noms de l'édition
+  var cardEditions = document.getElementsByClassName('cardEdition');
+  for(var i=0; i<cardEditions.length; i++) {
+    cardEditions[i].addEventListener('mouseover', showNextElement);
+    cardEditions[i].addEventListener('mouseleave', hideNextElement);
   }
 
 }
@@ -198,10 +210,12 @@ function filterCards() {
   var cond1 = true;
   var cond2 = true;
   var cond3 = true;
+  var cond4 = true;
 
   var searchedName    = txtCardName.value;
   var searchedType    = selectCardType.value;
   var searchedColor   = selectCardColor.value;
+  var searchedEdition = selectCardEdition.value;
 
   app.cardsFiltered = app.cards.filter(function(card) {
 
@@ -218,9 +232,10 @@ function filterCards() {
     }
 
     cond2 = (searchedType == 0) ? true : (card.type == searchedType);
-    cond3 = (searchedColor == 0) ? true: (card.color == searchedColor);
+    cond3 = (searchedColor == 0) ? true : (card.color == searchedColor);
+    cond4 = (searchedEdition == 0) ? true : (card.edition.name == searchedEdition);
 
-    return cond1 && cond2 && cond3;
+    return cond1 && cond2 && cond3 && cond4;
   });
 
   // sort
@@ -242,7 +257,21 @@ function filterReset() {
   cbCaseSensivity.checked = false;
   selectCardType.value = 0;
   selectCardColor.value = 0;
+  selectCardEdition.value = 0;
 }
+
+
+// helpers
+function showNextElement() {
+  var nextElem = this.nextSibling;
+  nextElem.style.display = 'inline'; // affichage de l'élément
+}
+
+function hideNextElement() {
+  var nextElem = this.nextSibling;
+  nextElem.style.display = 'none'; // masquage de l'élément
+}
+
 
 // démarrage
 init();

@@ -30,9 +30,11 @@ if (isset($_GET['s'])) {
 
 } else {
   $q = "SELECT card.id, card.name, type, color, popularity, img,
-        edition.name AS edition
+        edition.name AS edition, edition.date_start, edition.date_end,
+        UPPER(illustrator.lastname) AS illustrator
         FROM card
         INNER JOIN edition ON card.edition_id = edition.id
+        LEFT JOIN illustrator ON card.illustrator_id = illustrator.id
         ORDER BY name ASC";
 
   $query = $db->prepare($q);
@@ -45,11 +47,32 @@ if (isset($_GET['s'])) {
 
   $c = [];
   // ajout des traductions
-  $cards_translated = [];
+  $cards_modified = [];
 
   foreach($cards as $card) {
     $c = [];
-    $c = $card;
+    //$c = $card;
+    $c['id'] = $card['id'];
+    $c['name'] = $card['name'];
+    $c['type'] = $card['type'];
+    $c['color'] = $card['color'];
+    $c['popularity'] = $card['popularity'];
+    $c['img'] = $card['img'];
+
+    // si la carte n'a pas d'illustrateur
+    // on lui donne la valeur "Inconnu" (au lieu de null)
+    $c['illustrator'] = ($card['illustrator'] == null)
+      ? 'Inconnu'
+      : $card['illustrator'];
+
+    // mise en haut de casse par php (inutile si fait avec SQL)
+    //$c['illustrator'] = strtoupper($card['illustrator']);
+
+    $c['edition'] = [
+      'name' => $card['edition'],
+      'date_start' => $card['date_start'],
+      'date_end' => $card['date_end']
+    ];
 
     $type_fr  = $voca[$card['type']]['fr'];
     $color_fr = $voca[$card['color']]['fr'];
@@ -58,7 +81,7 @@ if (isset($_GET['s'])) {
     $c['color_fr']  = $color_fr;
 
     // ajout de la carte dans le tableau
-    $cards_translated[] = $c; // syntaxe alternative : array_push($cards_translated, $c);
+    $cards_modified[] = $c; // syntaxe alternative : array_push($cards_translated, $c);
 
   }
 
@@ -67,7 +90,7 @@ if (isset($_GET['s'])) {
   // echo '</pre>';
 
 
-  $cards_json = json_encode($cards_translated);
+  $cards_json = json_encode($cards_modified);
   echo $cards_json;
 }
 
