@@ -119,6 +119,23 @@ si le paramètre app.defaultImg vaut true:
 img n'est pas définie
 --
 
+--
+Au niveau de l'application Cards Table 3
+
+1/ Ajouter une colonne "Illustrateur" qui affichera
+le nom de l'illustrateur de la carte.
+Cette information proviendra d'une table SQL "illustrator" en
+relation avec la table card.
+Un illustrateur: id, lastname, firstname, country
+
+2/ Ajouter un filtre par Edition
+
+3/ Au survol du nom de l'édition, faire apparaître sous
+forme d'un "pop-up" les dates de début et de fin de l'édition
+--
+
+
+
 
 
 
