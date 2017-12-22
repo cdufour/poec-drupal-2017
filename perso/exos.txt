@@ -135,6 +135,28 @@ forme d'un "pop-up" les dates de début et de fin de l'édition
 --
 
 
+--
+ED: Créer une application studentApp
+
+1/ Dans la base ajax, ajouter 3 tables
+  student: id, lastname, firstname
+  exam: id, topic, date
+  result: id, student_id, exam_id, note
+Insérer des données manuellement dans les tables
+
+Côté client
+2/
+Faire une requête ajax pour obtenir les données.
+Afficher un tableau avec:
+  Le nom de l'étudiant
+  Le prénom de l'étudiant
+  La moyenne des notes obtenues aux examens subis
+
+3/ Au survol de la moyenne, un popup affichera
+le détails des notes.
+--
+
+
 
 
 
