@@ -2,11 +2,10 @@ var app = {
 
 };
 
-
-
 function init() {
-  promise.get('search2.php').then(function(err, res, xhr) {
-    console.log(res);
+  promise.get('search.php').then(function(err, res, xhr) {
+    res_encoded = JSON.parse(res);
+    console.log(res_encoded);
   })
 }
 

@@ -19,9 +19,9 @@ $query = $db->prepare($q);
 $query->execute();
 $rows = $query->fetchAll(PDO::FETCH_ASSOC);
 
-echo '<pre>';
-print_r($rows);
-echo '</pre>';
+//echo '<pre>';
+//print_r($rows);
+//echo '</pre>';
 
 // fonction de recherche
 function searchStudent($students, $student_lastname) {
@@ -54,21 +54,30 @@ foreach($rows as $row) {
    if ($row['note'] !== null) {
      $student['exams'][] = [
        'date' => $row['date'],
-       'topic' => $row['topic']
+       'topic' => $row['topic'],
+       'note' => $row['note']
      ];
    }
 
    // ajout de l'étudiant au tableau des étudiants
    $students[] = $student;
 
- } else { // étudiant déjà rencontré
-
+ } else { // étudiant déjà rencontré (autre examen)
+   // ajouter les infos d'exam (date, note) dans le tableau
+   // exams de l'étudiant ciblé
+   $students[$position]['exams'][] = [
+     'date' => $row['date'],
+     'topic' => $row['topic'],
+     'note' => $row['note']
+   ];
  }
 
 } // fin forEach
 
-echo '<pre>';
-print_r($students);
-echo '</pre>';
+//echo '<pre>';
+//print_r($students);
+//echo '</pre>';
+
+echo json_encode($students);
 
 ?>
