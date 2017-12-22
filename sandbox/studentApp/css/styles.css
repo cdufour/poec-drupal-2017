@@ -1,0 +1,14 @@
+tbody.tableStudents td {
+  position: relative
+}
+
+div.examDetails {
+  background-color: orange;
+  border-radius: 4px;
+  padding: 4px;
+  width: 150px;
+  position: absolute;
+  display: none
+}
+
+span.examNote { cursor: pointer }

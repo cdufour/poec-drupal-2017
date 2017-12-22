@@ -4,6 +4,6 @@ Créer une application "pictureApp" sur ce modèle :
 http://www.lotusnoir.info/magic/cartes/avant-garde-dadanto/XLN/XLN1/
 
 Au chargement de l'application, on affichera la première image d'une série,
-ainsi que les infos correspondantes.
+ainsi que les infos correspondante
 
 L'UI permettra de passer d'une carte à l'autre (avant/arrière)
