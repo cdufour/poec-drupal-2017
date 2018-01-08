@@ -1,5 +1,9 @@
 drupal/core
 drupal/profiles
 drupal/vendor
-
 drupal/*.*
+
+drupal-dev/core
+drupal-dev/profiles
+drupal-dev/vendor
+drupal-dev/*.*
