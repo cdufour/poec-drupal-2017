@@ -1,0 +1,15 @@
+intro.test:
+  path: '/test'
+  defaults:
+    _controller: '\Drupal\intro\Controller\IntroController::coucou'
+    _title: 'Route de test'
+  requirements:
+    _permission: 'access content'
+
+intro.greet:
+  path: '/greet'
+  defaults:
+    _controller: '\Drupal\intro\Controller\IntroController::greet'
+    _title: 'Souhait'
+  requirements:
+    _permission: 'access content'
