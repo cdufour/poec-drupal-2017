@@ -13,3 +13,11 @@ intro.greet:
     _title: 'Souhait'
   requirements:
     _permission: 'access content'
+
+intro.greeting_form:
+  path: '/admin/config/greeting-configuration'
+  defaults:
+    _form: '\Drupal\intro\Form\GreetingConfigurationForm'
+    _title: 'Greeting Configuration'
+  requirements:
+    _permission: 'Administer site configuration'

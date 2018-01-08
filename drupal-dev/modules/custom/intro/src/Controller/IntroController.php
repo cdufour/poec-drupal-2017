@@ -40,13 +40,20 @@ class IntroController extends ControllerBase {
    * @return array
    */
   public function greet() {
-    $message = "";
+    $default_message = "Ciao";
     $output = '';
-    if ($message != '') {
-      $output = $message;
-    } else {
-      $output = $this->message;
-    }
+    // if ($message != '') {
+    //   $output = $message;
+    // } else {
+    //   $output = $this->message;
+    // }
+    $config = $this->config('intro.custom_greeting');
+    $message = $config->get('greet');
+
+    // si Drupal ne trouve aucune valeur associée à la clé
+    // demandée (greet) dans la table Config, on renvoie au client
+    // une valeur par défaut
+    $output = ($message != '') ? $message : $default_message;
 
     return [
       '#markup' => $output
