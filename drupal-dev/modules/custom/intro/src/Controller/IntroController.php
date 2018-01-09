@@ -42,6 +42,7 @@ class IntroController extends ControllerBase {
   public function greet() {
     $default_message = "Ciao";
     $output = '';
+    $output_final = '';
     // if ($message != '') {
     //   $output = $message;
     // } else {
@@ -50,13 +51,28 @@ class IntroController extends ControllerBase {
     $config = $this->config('intro.custom_greeting');
     $message = $config->get('greet');
 
+    // récupération du paramètre de configuration et conversion en entier
+    $greet_num = (int) $config->get('greet_num');
+    //var_dump($greet_num);
+
+    $greet_num_enabled = (bool) $config->get('greet_num_enabled');
+
     // si Drupal ne trouve aucune valeur associée à la clé
     // demandée (greet) dans la table Config, on renvoie au client
     // une valeur par défaut
     $output = ($message != '') ? $message : $default_message;
 
+    if ($greet_num_enabled) {
+      for($i=0; $i<$greet_num; $i++) {
+        $output_final .= '<p>' . ($i+1) . ' ' . $output . '</p>';
+      }
+    } else {
+      $output_final = $output;
+    }
+
+
     return [
-      '#markup' => $output
+      '#markup' => $output_final
     ];
 
   }

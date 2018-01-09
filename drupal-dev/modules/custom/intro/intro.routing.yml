@@ -21,3 +21,11 @@ intro.greeting_form:
     _title: 'Greeting Configuration'
   requirements:
     _permission: 'Administer site configuration'
+
+intro.greeting_num_form:
+  path: '/admin/config/greeting-num-configuration'
+  defaults:
+    _form: '\Drupal\intro\Form\GreetingNumConfigurationForm'
+    _title: 'Greeting Number Configuration'
+  requirements:
+    _permission: 'Administer site configuration'

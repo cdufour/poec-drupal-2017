@@ -157,7 +157,16 @@ le détails des notes.
 --
 
 
+----- DRUPAL DEV MODULE -----
 
+--
+Ajouter dans le module intro une route renvoyant un formulaire.
+Ce formulaire permettra à l'administrateur d'enregistrer,
+via un champ de saisie, un nombre quelconque (exemple: 17).
+
+Sur la page /greet, on affichera, n fois le message de souhait où
+n correspond au nombre enregistré via la formulaire précédent
+--
 
 
 

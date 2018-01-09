@@ -41,7 +41,7 @@ class GreetingConfigurationForm extends ConfigFormBase {
       ->set('greet', $form_state->getValue('greeting'))
       ->save(); // déclenche une requête SQL INSERT INTO
 
-    parent::submitForm($form, $form_state); // traitement de la requête HTTP
+    return parent::submitForm($form, $form_state); // traitement de la requête HTTP
   }
 
 }
