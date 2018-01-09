@@ -1,0 +1,12 @@
+intro.page:
+  route_name: intro.greet
+  title: 'Affichage'
+  base_route: intro.greet
+intro.config1:
+  route_name: intro.greeting_form
+  title: 'Config Message'
+  base_route: intro.greet
+intro.config2:
+  route_name: intro.greeting_num_form
+  title: 'Config Nombre'
+  base_route: intro.greet

@@ -1,0 +1,13 @@
+intro.greet:
+  title: 'Souhait'
+  description: 'Page de souhait'
+  route_name: intro.greet
+  menu_name: main
+  weight: 10
+
+intro.greeting_num_form:
+  title: 'Souhait'
+  description: 'Configuration de la page souhait'
+  parent: system.admin_config_development
+  route_name: intro.greeting_num_form
+  weight: 10

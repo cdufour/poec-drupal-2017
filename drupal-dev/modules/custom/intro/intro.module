@@ -1,0 +1,24 @@
+<?php
+// le fichier intro.module définit un ensemble de fonctions
+// de "hooking"
+// Le "hooking" permet à un module d'agir/d'intervenir avant
+// que la réponse finale soit envoyée au client
+// Chaque module Core expose des fonctions de hooking. Il est en existe
+// une centaine
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help()
+ */
+function intro_help($route_name, RouteMatchInterface $route_match) {
+  switch($route_name) {
+    case 'help.page.intro':
+      $output = '';
+      $output .= '<h3>Intro</h3>';
+      $output .= '<p>' . t('Module introductif') . '</p>';
+      return $output;
+
+    default;
+  }
+}

@@ -70,7 +70,8 @@ class IntroController extends ControllerBase {
       $output_final = $output;
     }
 
-
+    // TO DO: ajouter au tableau contextuel les clés
+    // qui permettront d'afficher les liens contextuels...
     return [
       '#markup' => $output_final
     ];

@@ -1,0 +1,4 @@
+intro.change:
+  title: 'Change'
+  route_name: intro.greeting_form
+  group: intro
