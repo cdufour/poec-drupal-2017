@@ -77,13 +77,33 @@ class IntroController extends ControllerBase {
       $output_final = $output;
     }
 
+    // Prise en compte d'un proverbe
+    $proverb = \Drupal::service('intro.proverb')->getProverb();
+
     // TO DO: ajouter au tableau contextuel les clés
     // qui permettront d'afficher les liens contextuels...
     return [
-      '#markup' => $default_message
+      '#markup' => $default_message . '<div>'.$proverb.'</div>'
     ];
 
   }
 
+  /*
+   * Méthode proverbs
+   *
+   * @return array
+   */
+  public function proverbs() {
+    $proverbs = \Drupal::service('intro.proverb')->getProverbs();
 
+    // conversion du tableau en chaînes de caractères
+    $output = '';
+    foreach($proverbs as $proverb) {
+      $output .= '<p>' . $proverb . '</p>';
+    }
+
+    return [
+      '#markup' => $output
+    ];
+  }
 }

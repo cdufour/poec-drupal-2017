@@ -29,3 +29,11 @@ intro.greeting_num_form:
     _title: 'Greeting Number Configuration'
   requirements:
     _permission: 'Administer site configuration'
+
+intro.proverbs:
+  path: '/proverbs'
+  defaults:
+    _controller: '\Drupal\intro\Controller\IntroController::proverbs'
+    _title: 'Liste des proverbes'
+  requirements:
+    _permission: 'access content'

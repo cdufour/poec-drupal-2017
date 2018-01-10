@@ -168,6 +168,22 @@ Sur la page /greet, on affichera, n fois le message de souhait où
 n correspond au nombre enregistré via la formulaire précédent
 --
 
+--
+Sur la page /greet
+En plus du contenu actuel, afficher un proverbe.
+Le proverbe sera fourni de manière aléatoire pour le service
+intro.proverb. L'indice aléatoire sera déterminé par rand($min, $max)
+La source de données (tableau de proverbes - chaînes de carac.)
+sera définie au niveau du service.
+--
+
+--
+Créer une nouvelle route '/proverbs'
+Elle affichera la liste des proverbes fournis
+par le service intro.proverb
+Ajouter dans le menu principal un lien vers cette route
+--
+
 
 
 

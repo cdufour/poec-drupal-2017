@@ -4,3 +4,5 @@ services:
   intro.messengerbis:
     class: \Drupal\intro\MessengerFactoryBis
     arguments: ['@config.factory']
+  intro.proverb:
+    class: \Drupal\intro\ProverbFactory
