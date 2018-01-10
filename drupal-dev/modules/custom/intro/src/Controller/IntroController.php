@@ -2,6 +2,7 @@
 namespace Drupal\intro\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\intro\Messenger;
 
 /**
  * Controller de test
@@ -40,7 +41,13 @@ class IntroController extends ControllerBase {
    * @return array
    */
   public function greet() {
-    $default_message = "Ciao";
+
+    // possiblité d'instanciation directe par chemin complet
+    //$messenger = new \Drupal\intro\Messenger();
+    $messenger = new Messenger();
+
+    //$default_message = "Ciao";
+    $default_message = $messenger->getMessage();
     $output = '';
     $output_final = '';
     // if ($message != '') {
@@ -73,7 +80,7 @@ class IntroController extends ControllerBase {
     // TO DO: ajouter au tableau contextuel les clés
     // qui permettront d'afficher les liens contextuels...
     return [
-      '#markup' => $output_final
+      '#markup' => $default_message
     ];
 
   }

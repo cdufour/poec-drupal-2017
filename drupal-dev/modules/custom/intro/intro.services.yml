@@ -1,0 +1,6 @@
+services:
+  intro.messenger:
+    class: \Drupal\intro\MessengerFactory
+  intro.messengerbis:
+    class: \Drupal\intro\MessengerFactoryBis
+    arguments: ['@config.factory']
