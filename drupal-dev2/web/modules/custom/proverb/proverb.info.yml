@@ -1,0 +1,5 @@
+name: Proverb
+package: Custom
+core: 8.x
+type: module
+description: Module de proverbes
