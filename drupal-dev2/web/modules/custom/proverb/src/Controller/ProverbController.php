@@ -7,16 +7,31 @@ use Drupal\Core\Controller\ControllerBase;
 
 class ProverbController extends ControllerBase {
 
+  private $forbidden_word;
+
+  public function __construct() {
+    $this->forbidden_word = 'Paul';
+  }
+
+  private function isBanned($title, $forbidden_word) {
+    if (strstr(strtolower($title), strtolower($forbidden_word)) != false) {
+      // le mot interdit a été trouvé
+      return true;
+    } else {
+      // le mot interdit n'a pas été trouvé
+      return false;
+    }
+  }
+
   public function list() {
 
     // retourne un objet modélisant le node id 1
-    $node = \Drupal\node\Entity\Node::load(4);
-    $title = $node->getTitle();
+    //$node = \Drupal\node\Entity\Node::load(1);
+    //$title = $node->getTitle();
     // équivalent à:
-    $titlebis = $node->title->value;
+    //$titlebis = $node->title->value;
     // ->title renvoie un objet, ->value renvoie la valeur brut
-    $body = $node->body->value;
-
+    //$body = $node->body->value;
     //dpm($body);
 
     // utilisation d'un service d'interrogation de la base de données
@@ -36,7 +51,10 @@ class ProverbController extends ControllerBase {
     $output = '<ul>';
     foreach($proverbs as $proverb) {
       //dpm($proverb->getTitle());
-      $output .= '<li>'. $proverb->getTitle() .'</li>';
+      if (!$this->isBanned($proverb->getTitle(), $this->forbidden_word)) {
+        $output .= '<li>'. $proverb->getTitle() .'</li>';
+      }
+
     }
     $output .= '</ul>';
 
@@ -46,7 +64,7 @@ class ProverbController extends ControllerBase {
     $uids = $query2->execute();
     $users = \Drupal\user\Entity\User::loadMultiple($uids);
     foreach($users as $user) {
-      dpm($user->getUsername());
+      //dpm($user->getUsername());
       if ($user->isActive() == 1) {
         //dpm('Actif');
       } else {
@@ -60,7 +78,27 @@ class ProverbController extends ControllerBase {
     //********************************************
 
     return [
-      '#markup' => '<h2>' . $title . '</h2>' . $output
+      '#markup' => $output
+    ];
+  }
+
+  public function listBanned() {
+
+    $query = \Drupal::service('entity.query')->get('node');
+    $query->condition('type', 'proverb');
+    $nids = $query->execute();
+    $proverbs = \Drupal\node\Entity\Node::loadMultiple($nids);
+
+    $output = '<ul>';
+    foreach($proverbs as $proverb) {
+      if ($this->isBanned($proverb->getTitle(), $this->forbidden_word)) {
+        $output .= '<li>' . $proverb->getTitle() . '</li>';
+      }
+    }
+    $output .= '</ul>';
+
+    return [
+      '#markup' => $output
     ];
   }
 

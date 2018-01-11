@@ -5,3 +5,11 @@ proverb.list:
     _title: 'Liste des proverbes'
   requirements:
     _permission: access content
+
+proverb.list-banned:
+  path: '/list-banned'
+  defaults:
+    _controller: '\Drupal\proverb\Controller\ProverbController::listBanned'
+    _title: 'Liste des proverbes bannis'
+  requirements:
+    _permission: access content
