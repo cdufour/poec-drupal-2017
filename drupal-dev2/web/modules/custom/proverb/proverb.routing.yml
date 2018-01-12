@@ -29,3 +29,11 @@ proverb.banned_word_form:
     _title: 'Mot à bannir'
   requirements:
     _permission: 'Administer site configuration'
+
+proverb.import_form:
+  path: '/admin/config/proverb-import'
+  defaults:
+    _form: '\Drupal\proverb\Form\ImportForm'
+    _title: 'Import de proverbes'
+  requirements:
+    _permission: 'Administer site configuration'
