@@ -102,4 +102,34 @@ class ProverbController extends ControllerBase {
     ];
   }
 
+  public function listBannedBis() {
+
+    // récupération des proverbes
+    $query = \Drupal::service('entity.query')->get('node');
+    $query->condition('type', 'proverb');
+    $nids = $query->execute();
+    $proverbs = \Drupal\node\Entity\Node::loadMultiple($nids);
+
+    // récupération des mots interdits via service database
+    $db = \Drupal::service('database');
+    $q = "SELECT * FROM banned_word";
+    $words = $db->query($q)->fetchAll();
+
+    $output = '<ul>';
+    foreach($proverbs as $proverb) {
+      // note: cette boucle imbriquée peut aussi se faire avec foreach
+      for($i=0; $i<sizeof($words); $i++) {
+        if ($this->isBanned($proverb->getTitle(), $words[$i]->word)) {
+          $output .= '<li>' . $proverb->getTitle() . '</li>';
+          break;
+        }
+      }
+    }
+    $output .= '</ul>';
+
+    return [
+      '#markup' => $output
+    ];
+  }
+
 }

@@ -14,6 +14,14 @@ proverb.list-banned:
   requirements:
     _permission: access content
 
+proverb.list-bannedbis:
+  path: '/list-bannedbis'
+  defaults:
+    _controller: '\Drupal\proverb\Controller\ProverbController::listBannedBis'
+    _title: 'Liste des proverbes bannis Bis'
+  requirements:
+    _permission: access content
+
 proverb.banned_word_form:
   path: '/admin/config/banned-word'
   defaults:

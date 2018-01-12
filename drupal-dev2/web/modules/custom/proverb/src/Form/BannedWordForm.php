@@ -36,6 +36,15 @@ class BannedWordForm extends ConfigFormBase {
     //   ->set('word', $word)
     //   ->save();
 
+    // Plus approprié : utilisation du service database
+    // Insertion dans la table personnalisée banned_word
+    $db = \Drupal::service('database');
+    $fields = array('word' => $word);
+    $db
+      ->insert('banned_word')
+      ->fields($fields)
+      ->execute();
+
     return parent::submitForm($form, $form_state);
 
   }

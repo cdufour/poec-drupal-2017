@@ -6,8 +6,7 @@
  * instructions exécutées à l'installation du module
  */
 function proverb_install() {
-  //$db = \Drupal::service('database');
-  //$db->insert('')
+ //...
 }
 
 /*
