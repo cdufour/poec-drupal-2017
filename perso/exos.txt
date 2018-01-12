@@ -184,8 +184,23 @@ par le service intro.proverb
 Ajouter dans le menu principal un lien vers cette route
 --
 
+--
+Dans le module proverb:
+Ajouter une route /list-banned
+Elle affichera la liste des proverbes "bannis"
+Les proverbes bannis sont ceux contenant dans leur titre
+le mot "argent".
+N.B: trouver la fonction PHP permettant de rechercher
+une chaîne dans une autre
 
-
+V2
+Ajouter une route /list-banned-2
+Elle affichera la liste des proverbes "bannis"
+Les proverbes bannis sont ceux contenant dans leur titre
+au moins un mot parmi un ensemble de mots.
+Les mots constituant cet ensemble seront enregistrables via
+un formulaire
+--
 
 
 

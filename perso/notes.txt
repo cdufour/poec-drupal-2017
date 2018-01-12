@@ -13,10 +13,7 @@ sudo add-apt-repository ppa:webupd8team/atom
 sudo apt-get update
 sudo apt-get install atom
 
-
 sudo apt-get install php-xml
-
-
 
 *** JS sort ***
 var nom = ['Paul','Farid','Loubna','Tanguy','Alpha'];
@@ -39,19 +36,31 @@ stagiaires.sort();
 console.log(notes);
 
 
-// composer
+/*** COMPOSER ***/
 https://getcomposer.org/download/
 1. php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 2. php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
-// installation de drupal via composer
+# installation de drupal via composer
 composer create-project drupal-composer/drupal-project:8.x-dev some-dir --stability dev --no-interaction
 
-// drush launcher
+# Drush launcher
 wget -O drush.phar https://github.com/drush-ops/drush-launcher/releases/download/0.5.1/drush.phar
 
 
+/*** DRUSH ***/
 https://drushcommands.com/
-drush cr
+
+# cache-rebuild
+drush cr #
+
+# enable module
 drush en module_name
+
+# uninstall module
 drush pm-uninstall module_name
+
+
+# Télécharger un module contribué Drupal via Composer
+composer require drupal/<modulename>
+ex: composer require drupal/devel

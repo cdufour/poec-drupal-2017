@@ -13,3 +13,11 @@ proverb.list-banned:
     _title: 'Liste des proverbes bannis'
   requirements:
     _permission: access content
+
+proverb.banned_word_form:
+  path: '/admin/config/banned-word'
+  defaults:
+    _form: '\Drupal\proverb\Form\BannedWordForm'
+    _title: 'Mot à bannir'
+  requirements:
+    _permission: 'Administer site configuration'
