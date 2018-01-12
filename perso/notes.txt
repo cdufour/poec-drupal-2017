@@ -64,3 +64,8 @@ drush pm-uninstall module_name
 # Télécharger un module contribué Drupal via Composer
 composer require drupal/<modulename>
 ex: composer require drupal/devel
+
+
+
+# Supprimer un objet de configuration (provenant d'un fichier yml)
+drush config-delete <config_name>

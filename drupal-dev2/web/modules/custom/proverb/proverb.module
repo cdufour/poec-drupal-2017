@@ -1,0 +1,42 @@
+<?php
+
+/*
+ * implements hook_install
+ *
+ * instructions exécutées à l'installation du module
+ */
+function proverb_install() {
+  //$db = \Drupal::service('database');
+  //$db->insert('')
+}
+
+/*
+ * implements hook_schema
+ *
+ * hook destiné à créer une table en base de données
+ * dès l'installation du module
+ */
+function proverb_schema() {
+
+  $schema['banned_word'] = array(
+    'description' => '',
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Banned word ID'
+      ),
+      'word' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Banned word'
+      )
+    ),
+    'primary key' => array('id')
+  );
+
+  return $schema;
+
+}
