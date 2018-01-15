@@ -53,3 +53,19 @@ proverb.banned_word_delete:
     _title: 'Suppression'
   requirements:
     _permission: Administer site configuration
+
+proverb.test:
+  path: '/test'
+  defaults:
+    _controller: '\Drupal\proverb\Controller\ProverbController::test'
+    _title: 'Test'
+  requirements:
+    _permission: access content
+
+proverb.list_category:
+  path: '/proverbs/category/{category}'
+  defaults:
+    _controller: '\Drupal\proverb\Controller\ProverbController::listByCategory'
+    _title: 'Proverbes par catégorie'
+  requirements:
+    _permission: access content

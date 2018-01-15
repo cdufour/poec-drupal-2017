@@ -3,9 +3,10 @@
 namespace Drupal\proverb\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-//use Drupal\Node\Entity\Node;
+use Drupal\node\Entity\Node;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Drupal\Core\Url;
 
 class ProverbController extends ControllerBase {
 
@@ -182,21 +183,30 @@ class ProverbController extends ControllerBase {
 
     $rows = [];
     foreach($words as $word) {
-      $r = [
-        '#data' => $word->word,
-        '<a href="#">Supprimer</a>'
-      ];
+
+      // from Route renvoie un objet de type Url
+      $url = Url::fromRoute(
+        'proverb.banned_word_delete',
+        array('id' => $word->id)
+      );
+
+      // le service l générè un lien à partir d'un objet Url
+      $link = \Drupal::l('Supprimer', $url);
+
+      $r = [$word->word, $link];
       $rows[] = $r;
     }
 
+    // N.B: ici, on transmets la tableau assoc au template
+    // table.html.twig qui ne reconnaît pas la clé #markup.
+    // TODO étendre le template afin qu'il traite les clés
+    // supplémentaires
     return [
+      '#markup' => 'fsdfsdfsd',
       '#theme' => 'table',
       '#header' => array('Mot', 'Actions'),
       '#rows' => $rows
     ];
-
-
-
 
   }
 
@@ -209,6 +219,48 @@ class ProverbController extends ControllerBase {
       ->condition('id', $word_id)
       ->execute();
 
-    return ['#markup' => '...'];
+    if ($result != 1) {
+      // aucune suppression
+      return ['#markup' => 'La suppression a échoué. Désolé...'];
+    } else {
+      // suppresion réussie: redirection vers le tableau des mots bannis
+      return $this->redirect('proverb.banned_words');
+    }
+
+  }
+
+  public function listByCategory(Request $request) {
+
+    // récupération de la valeur de l'argument Url category
+    $category = $request->get('category');
+
+    // 1 récupération des identifiants de node (nids)
+    $query = \Drupal::service('entity.query')->get('node');
+    $query->condition('type', 'proverb');
+    $query->condition('field_category', $category);
+    // égal à:
+    //$query->condition('field_category.value', $category);
+    $nids = $query->execute();
+
+    // 2 chargement
+    $proverbs = Node::loadMultiple($nids);
+
+    // 3 parcours des données et création de la variable $items
+    // qu'on fournira ensuite au template item_list
+    $items = [];
+    foreach($proverbs as $proverb) {
+      $items[] = $proverb->getTitle();
+    }
+
+    return [
+      '#theme' => 'item_list',
+      '#items' => $items
+    ];
+  }
+
+  public function test() {
+    // On courcircuite le système de rendu Drupal
+    // Aucun template n'est rendu dans la réponse client
+    return new Response('Exemple: renvoyer données au format JSON...');
   }
 }
