@@ -37,3 +37,19 @@ proverb.import_form:
     _title: 'Import de proverbes'
   requirements:
     _permission: 'Administer site configuration'
+
+proverb.banned_words:
+  path: '/banned-words'
+  defaults:
+    _controller: '\Drupal\proverb\Controller\ProverbController::listBannedWords'
+    _title: 'Liste des mots interdits'
+  requirements:
+    _permission: Administer site configuration
+
+proverb.banned_word_delete:
+  path: '/banned-word/{id}/delete'
+  defaults:
+    _controller: '\Drupal\proverb\Controller\ProverbController::bannedWordDelete'
+    _title: 'Suppression'
+  requirements:
+    _permission: Administer site configuration

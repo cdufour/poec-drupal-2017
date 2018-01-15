@@ -203,6 +203,13 @@ un formulaire
 --
 
 
+--
+Dans le module proverb, ajouter une route /banned-words
+affichant la liste des mots interdits sous forme de tableau.
+Cette route sera accessible uniquement pour l'administrateur.
+Utiliser le service database et la méthode select du query builder.
+--
+
 
 
 

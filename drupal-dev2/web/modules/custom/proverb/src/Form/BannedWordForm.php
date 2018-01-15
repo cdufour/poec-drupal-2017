@@ -40,6 +40,8 @@ class BannedWordForm extends ConfigFormBase {
     // Insertion dans la table personnalisée banned_word
     $db = \Drupal::service('database');
     $fields = array('word' => $word);
+
+    // Utilisation de la méthode insert du query builder
     $db
       ->insert('banned_word')
       ->fields($fields)

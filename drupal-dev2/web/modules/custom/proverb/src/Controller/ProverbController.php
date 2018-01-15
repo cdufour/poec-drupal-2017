@@ -4,6 +4,8 @@ namespace Drupal\proverb\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 //use Drupal\Node\Entity\Node;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProverbController extends ControllerBase {
 
@@ -132,4 +134,81 @@ class ProverbController extends ControllerBase {
     ];
   }
 
+  public function listBannedWords() {
+
+    //$db = \Drupal::service('database');
+    // syntaxe alternative, par raccourci:
+    $db = \Drupal::database();
+
+    $results = $db->select('banned_word', 'b')
+      ->fields('b')
+      ->execute();
+
+    // fetchAll renvoie un tableau d'objects (stdClass)
+    $words = $results->fetchAll();
+
+    // Variante 1
+    // $output = '<table>';
+    // foreach($words as $word) {
+    //   $output .= '<tr>';
+    //   $output .= '<td>'.$word->word.'</td>';
+    //   $output .= '</tr>';
+    // }
+    // $output .= '</table>';
+
+    // return [
+    //   '#markup' => $output
+    // ];
+
+    // Variante 2.1: liste
+    // $items = [];
+    // foreach($words as $word) {
+    //   $item = ['#markup' => $word->word];
+    //   $items[] = $item;
+    // }
+    //
+    // return [
+    //   '#theme' => 'item_list',
+    //   '#items' => $items
+    // ];
+
+    // Variante 2.2, on utilise le type de rendu 'table'
+    // Le système de rendu ira chercher le template table.html.twig
+    // pour gérer le balisage html corresponsant
+    // Avantages de cette variante:
+    //  séparation entre données  et présentation
+    //  possiblités d'intervention (hooking) dans le tableau assoc
+    // avant le rendu final (réponse au client)
+
+    $rows = [];
+    foreach($words as $word) {
+      $r = [
+        '#data' => $word->word,
+        '<a href="#">Supprimer</a>'
+      ];
+      $rows[] = $r;
+    }
+
+    return [
+      '#theme' => 'table',
+      '#header' => array('Mot', 'Actions'),
+      '#rows' => $rows
+    ];
+
+
+
+
+  }
+
+  public function bannedWordDelete(Request $request) {
+
+    $word_id = (int) $request->get('id');
+
+    $db = \Drupal::database();
+    $result = $db->delete('banned_word')
+      ->condition('id', $word_id)
+      ->execute();
+
+    return ['#markup' => '...'];
+  }
 }
