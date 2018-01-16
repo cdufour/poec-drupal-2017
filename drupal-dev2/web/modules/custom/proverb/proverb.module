@@ -39,3 +39,18 @@ function proverb_schema() {
   return $schema;
 
 }
+
+/*
+ * implements hook_theme()
+ *
+ */
+function proverb_theme($existing, $type, $theme, $path) {
+  return [
+    'test' => [
+      'variables' => ['data' => NULL]
+    ],
+    'list' => [
+      'variables' => ['items' => NULL]
+    ],
+  ];
+}

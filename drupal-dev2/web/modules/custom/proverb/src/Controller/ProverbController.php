@@ -261,6 +261,48 @@ class ProverbController extends ControllerBase {
   public function test() {
     // On courcircuite le système de rendu Drupal
     // Aucun template n'est rendu dans la réponse client
-    return new Response('Exemple: renvoyer données au format JSON...');
+    // return new Response('Exemple: renvoyer données au format JSON...');
+
+    $out = [];
+
+    $out['cb'] = array(
+      '#type' => 'checkbox',
+      '#title' => 'CB'
+    );
+
+    $out['cb2'] = array(
+      '#type' => 'checkbox',
+      '#title' => 'CB2'
+    );
+
+    $out['select'] = array(
+      '#type' => 'select',
+      '#title' => 'Select',
+      '#options' => array('Option1', 'Option2')
+    );
+
+    $out['free'] = array(
+      '#markup' => '<p>Balisage libre</p>'
+    );
+
+    $out['list'] = array(
+      '#theme' => 'item_list',
+      '#items' => array('Item 1', 'Item 2', 'Item 3')
+    );
+
+    $out['test'] = array(
+      '#theme' => 'test',
+      '#data' => 'peu importe',
+    );
+
+    $out['list_perso'] = array(
+      '#theme' => 'list',
+      '#items' => ['Pomme', 'Poire', 'Cerise'],
+    );
+
+    return $out;
+
   }
+
+
 }
