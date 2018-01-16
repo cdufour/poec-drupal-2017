@@ -25,40 +25,45 @@ class CleanController extends ControllerBase {
 
   private function checkQuotes2($str) {
     $new_str = "";
+
+    // on se débarrasse de l'éventuel saut de ligne
+    if (ord(substr($str, -1)) == 13) {
+      $new_str = substr($str, 0, strlen($str)-1);
+    } else {
+      $new_str = $str;
+    }
+
+    // TO DO: prendre en compte la présence
+    // éventuelle d'un caractère de fin de ligne (13)
+    // en fin de chaîne
+
     $checked_char = "\"";
 
     $firstChar = substr($str, 0, 1);
     $lastChar = substr($str, -1);
 
     if ($firstChar == $checked_char) {
-      dpm("premier caractère = guillemet");
-      // Le premier caractère est un guillemet
+      //dpm("premier caractère = guillemet");
 
       // nouvelle chaîne sans le guillement initial
-      $new_str = substr($str, 1);
+      $new_str = substr($new_str, 1);
 
       $lastChar = substr($new_str, -1);
 
       if ($lastChar == $checked_char) {
-        // Le dernier caractère est guillemet
-        dpm("dernier caractère = guillemet");
+        //dpm("dernier caractère = guillemet");
         $new_str = substr($new_str, 0, strlen($new_str)-1);
       }
 
     } else {
-      // Le premier caractère n'est pas un guillemet
-      // $new_str reçoit une copie de la chaîne passe en entrée
-      $new_str = $str;
 
       if ($lastChar == $checked_char) {
-        // Le dernier caractère est guillemet
-        dpm("dernier caractère = guillemet");
+        //dpm("dernier caractère = guillemet");
         $new_str = substr($new_str, 0, strlen($new_str)-1);
       }
     }
 
     return $new_str;
-
   }
 
   public function removeQuotes() {
@@ -74,11 +79,11 @@ class CleanController extends ControllerBase {
     //3. Parcours et mise à jour du titre des proverbes
     foreach($proverbs as $proverb) {
       $title = $proverb->getTitle();
-      //dpm($this->checkQuotes($title));
-      // if ($this->checkQuotes($title)) {
-      //   $proverb->setTitle($this->noQuotes($title));
-      //   $proverb->save();
-      // }
+      $title_no_quotes = $this->checkQuotes2($title);
+
+      // s'il y a un moins un guillemet en position initiale ou finale
+      $proverb->setTitle($title_no_quotes);
+      $proverb->save();
 
     }
 
@@ -89,12 +94,12 @@ class CleanController extends ControllerBase {
     $cas_4 = 'On est en ce monde enclume ou marteau.';
 
     //dpm($this->checkQuotes2($cas_1)); // OK
-    //dpm($this->checkQuotes2($cas_2)); //  OK
+    //dpm($this->checkQuotes2($cas_2)); // OK
     //dpm($this->checkQuotes2($cas_3)); // OK
     //dpm($this->checkQuotes2($cas_4)); // OK
 
-    //return $this->redirect('proverb.list');
-    return ['#markup' => 'fdfd'];
+    return $this->redirect('proverb.list');
+
   }
 
 }

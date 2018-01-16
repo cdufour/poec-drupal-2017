@@ -77,3 +77,11 @@ proverb.clean_quotes:
     _title: 'Nettoyage'
   requirements:
     _permission: 'Administer site configuration'
+
+proverb.clean_form:
+  path: '/admin/config/clean-form'
+  defaults:
+    _form: '\Drupal\proverb\Form\CleanForm'
+    _title: 'Nettoyage proverbes'
+  requirements:
+    _permission: 'Administer site configuration'

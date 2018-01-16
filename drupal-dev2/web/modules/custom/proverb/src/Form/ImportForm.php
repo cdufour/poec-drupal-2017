@@ -31,6 +31,12 @@ class ImportForm extends ConfigFormBase {
 
     foreach($proverbs as $proverb) {
       // Enregistrer un node de type proverb dans le système
+
+      // TO DO: améliorer le traitement
+      // afin de ne pas enregistrer le titre du node
+      // avec un saut de ligne (13 dans la table ASCII)
+      // parasite
+
       $node = Node::create([
         'type' => 'proverb',
         'title' => $proverb
