@@ -210,6 +210,42 @@ Cette route sera accessible uniquement pour l'administrateur.
 Utiliser le service database et la méthode select du query builder.
 --
 
+--
+Ajouter un champ category (text plain) au node.proverb via l'UI.
+Editer quelques proverbes afin de leur associer une catégorie.
+Ex: "amitié", "travail", etc...
+Ajouter une route qui affichera les proverbes en rapport avec un
+nom de catégorie passée en paramètre Url
+Ex: /proverbs/category/travail
+--
+
+--
+"Nettoyer" les titres des proverbes en elevant
+les guillemets situés en début et fin de chaîne
+
+/* Pour mettre à jour une entité. */
+1. Charger l'entité (Node::load($id))
+2. Mettre le jour le champs souhaité par le biais d'un setter
+(ex: $node->setTitle('nouvelle valeur'))
+3. Sauvegarder ($node->save())
+
+Faire ce travail dans un controller spécifique: CleanController
+Utiles: les fonctions substr et strlen
+
+Variante2:
+Proposer un formulaire de configuration avec
+  - un radio button "Ajouter/supprimer caractère"
+  - un textfield permettant de saisir un caractère
+  - un menu déroulant avec comme options les types de node (article, proveb, etc.)
+
+A la soumission du formulaire, en fonction du choix sur le radion button
+Le caractère saisi sera ajouté (ou supprimé) au titre des nodes du type
+sélectionné
+
+
+--
+
+
 
 
 

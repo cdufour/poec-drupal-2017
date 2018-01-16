@@ -1,0 +1,22 @@
+CRUD
+
+->select
+->insert
+->delete
+->update
+
+$db = \Drupal::database();
+$result = $db->update('banned_word')
+  ->fields([
+    'word' => 'argent'
+  ])
+  ->condition('id', 8)
+  ->execute();
+
+  UPDATE banned_word SET word = 'argent'
+  WHERE id = 8
+
+
+
+
+//

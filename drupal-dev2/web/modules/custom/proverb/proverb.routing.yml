@@ -69,3 +69,11 @@ proverb.list_category:
     _title: 'Proverbes par catégorie'
   requirements:
     _permission: access content
+
+proverb.clean_quotes:
+  path: '/admin/clean-quotes'
+  defaults:
+    _controller: '\Drupal\proverb\Controller\CleanController::removeQuotes'
+    _title: 'Nettoyage'
+  requirements:
+    _permission: 'Administer site configuration'
