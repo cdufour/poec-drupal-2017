@@ -241,11 +241,14 @@ Proposer un formulaire de configuration avec
 A la soumission du formulaire, en fonction du choix sur le radion button
 Le caractère saisi sera ajouté (ou supprimé) au titre des nodes du type
 sélectionné
-
-
 --
 
-
+--
+Dans le module proverb, ajouter un block (classe:"ProverbBlock").
+Ce bloc (à placer dans la région sidebar-first) affichera:
+ - les 3 derniers proverbes enregistrés si user anonyme
+ - les 5 derniers proverbes enregistrés si user admin
+--
 
 
 

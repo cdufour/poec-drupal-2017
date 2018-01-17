@@ -290,19 +290,15 @@ class ProverbController extends ControllerBase {
       '#items' => array('Item 1', 'Item 2', 'Item 3')
     );
 
-    $out['test'] = array(
-      '#theme' => 'test',
-      '#data' => 'peu importe',
-    );
-
+    $roles = \Drupal::currentUser()->getRoles();
     $out['list_perso'] = array(
       '#theme' => 'list',
       '#items' => ['Pomme', 'Poire', 'Cerise'],
+      '#isUserAdmin' => in_array('administrator', $roles)
     );
 
     return $out;
 
   }
-
 
 }

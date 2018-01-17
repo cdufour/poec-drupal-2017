@@ -1,6 +1,7 @@
 {#
   * Available variables:
    - items: array
+   - isUserAdmin: bool
 #}
 
 <ul class="list">
@@ -8,3 +9,11 @@
   <li>{{ item }}</li>
 {% endfor %}
 </ul>
+
+{% for item in items %}
+  {% if isUserAdmin %}
+    <div class="admin">{{ item | upper }}</div>
+  {% else %}
+    <div>{{ item }}</div>
+  {% endif %}
+{% endfor %}

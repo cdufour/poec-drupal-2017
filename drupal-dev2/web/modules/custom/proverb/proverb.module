@@ -46,11 +46,49 @@ function proverb_schema() {
  */
 function proverb_theme($existing, $type, $theme, $path) {
   return [
-    'test' => [
-      'variables' => ['data' => NULL]
-    ],
     'list' => [
-      'variables' => ['items' => NULL]
+      'variables' => [
+        'items' => NULL,
+        'isUserAdmin' => NULL
+      ]
     ],
   ];
+}
+
+/*
+ * implements hook_block_view_alter()
+ *
+ */
+function proverb_block_view_alter(array &$build,
+\Drupal\Core\Block\BlockPluginInterface $block) {
+  // Remove the contextual links on all blocks that provide them.
+  if (isset($build['#contextual_links'])) {
+    unset($build['#contextual_links']);
+  }
+  // if ($build['#configuration']['id'] == 'search_form_block') {
+  //   $build['#configuration']['label'] = "Mon titre à moi";
+  // }
+}
+
+/*
+ * implements hook_block_view_BASE_BLOCK_ID_alter()
+ *
+ */
+function proverb_block_view_search_form_block_alter(array &$build,
+\Drupal\Core\Block\BlockPluginInterface $block) {
+  $build['#configuration']['label'] = "Titre altéré";
+}
+
+/*
+ * implements hook_ENTITY_TYPE_view_alter()
+ *
+ */
+function proverb_node_view_alter(array &$build, Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+  //dpm($build['#view_mode']);
+  $title = $build['#node']->title->value; // accès en lecture à la propriété
+
+  // TO DO: modifier la propriété en écriture
+  // l'instruction suivante ne donne rien:
+  //$build['#node']->title->value = "fsdfsdfsdfsdfsd";
+
 }
