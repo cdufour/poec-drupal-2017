@@ -263,6 +263,8 @@ class ProverbController extends ControllerBase {
     // Aucun template n'est rendu dans la réponse client
     // return new Response('Exemple: renvoyer données au format JSON...');
 
+    return $this->assignCategory();
+
     $out = [];
 
     $out['cb'] = array(
@@ -312,12 +314,38 @@ class ProverbController extends ControllerBase {
     foreach($proverbs as $proverb) {
       $res[] = [
         'title' => $proverb->get('title')->value,
-        'category' => $proverb->get('field_category')->value
+        'category' => ucfirst($proverb->get('field_category')->value)
       ];
     }
 
     $res_json = json_encode($res);
     return new Response($res_json);
+  }
+
+  public function assignCategory() {
+    $tids = \Drupal::entityQuery('taxonomy_term')
+      ->condition('vid', 'category')
+      ->execute();
+
+    $nids = \Drupal::entityQuery('node')
+      ->condition('type', 'proverb')
+      ->execute();
+
+    $categories = \Drupal\taxonomy\Entity\Term::loadMultiple($tids);
+    $proverbs = Node::loadMultiple($nids);
+
+    $tids_num = [];
+    foreach ($tids as $tid) $tids_num[] = $tid;
+
+    foreach($proverbs as $proverb) {
+      $random_index = rand(0, sizeof($tids_num)-1);
+      $random_term_id = $tids_num[$random_index];
+      $random_category_name = $categories[$random_term_id]->getName();
+      $proverb->set('field_category', $random_category_name);
+      $proverb->save();
+    }
+
+    return [];
   }
 
 }

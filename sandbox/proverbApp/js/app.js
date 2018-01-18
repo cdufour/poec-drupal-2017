@@ -4,7 +4,7 @@ var app = {
     init: [],
     filtered: []
   },
-  categories: ['argent', 'Bonheur', 'mort']
+  categories: ['Argent', 'Bonheur', 'Mort']
 };
 
 // CIBLAGE

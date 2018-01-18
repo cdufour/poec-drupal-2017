@@ -274,10 +274,10 @@ Ajouter plusieurs termes
 (exemple: Travail, Courage, Mort, Bonheur, etc...).
 Dans ProverbController, ajouter une méthode assignCategory()
 appelée par une route /proverb/assign-category.
-Cette méthode récuperea la liste des termes du vocabulary "Category"
+Cette méthode récupèrera la liste des termes du vocabulary "Category"
 et les assignera de manière aléatoire aux proverbes (field_category).
 Après execution de la méthode, tous les proverbes doivent être
-liée à une catégorie.
+liés à une catégorie.
 --
 
 
