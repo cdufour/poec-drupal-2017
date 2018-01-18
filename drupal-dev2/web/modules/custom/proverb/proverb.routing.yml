@@ -85,3 +85,11 @@ proverb.clean_form:
     _title: 'Nettoyage proverbes'
   requirements:
     _permission: 'Administer site configuration'
+
+proverb.list_json:
+  path: '/proverbs/json'
+  defaults:
+    _controller: '\Drupal\proverb\Controller\ProverbController::listJson'
+    _title: ''
+  requirements:
+    _permission: 'access content'

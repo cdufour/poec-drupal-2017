@@ -250,9 +250,35 @@ Ce bloc (à placer dans la région sidebar-first) affichera:
  - les 5 derniers proverbes enregistrés si user admin
 --
 
+--
+Créer dans le dossier sandbox une petite application client
+"proverbApp" visant à consommer un service web.
+L'application affichera une liste de proverbes
+fournie au format JSON par l'adresse
+ http://localhost/drupal-dev2/web/proverbs/json
+Un script JS interrogera cette adresse par une requête ajax
+et ajoutera les proverbes dans le DOM d'une page index.html
 
+Conseil: vous pouvez vous inspirer de studentApp
 
+Bonus:
+Afficher également les catégories.
+Placer dans l'interface client un menu déroulant permettant
+de filtrer par catégorie
+--
 
+--
+Application Drupal-dev2
+Dans l'UI, créer un dictionnaire: "Category".
+Ajouter plusieurs termes
+(exemple: Travail, Courage, Mort, Bonheur, etc...).
+Dans ProverbController, ajouter une méthode assignCategory()
+appelée par une route /proverb/assign-category.
+Cette méthode récuperea la liste des termes du vocabulary "Category"
+et les assignera de manière aléatoire aux proverbes (field_category).
+Après execution de la méthode, tous les proverbes doivent être
+liée à une catégorie.
+--
 
 
 

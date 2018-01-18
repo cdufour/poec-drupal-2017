@@ -298,7 +298,26 @@ class ProverbController extends ControllerBase {
     );
 
     return $out;
+  }
 
+  public function listJson() {
+    // charger les proverbes et les convertir en JSON
+    $nids = \Drupal::entityQuery('node')
+      ->condition('type', 'proverb')
+      ->execute();
+
+    $proverbs = Node::loadMultiple($nids);
+
+    $res = [];
+    foreach($proverbs as $proverb) {
+      $res[] = [
+        'title' => $proverb->get('title')->value,
+        'category' => $proverb->get('field_category')->value
+      ];
+    }
+
+    $res_json = json_encode($res);
+    return new Response($res_json);
   }
 
 }
