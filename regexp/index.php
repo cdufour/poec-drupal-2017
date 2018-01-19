@@ -20,7 +20,8 @@ $pattern = "/(?<=<em>)(\s?\w+\s?)+(?=<\/em>)/";
 
 // requête de serveur à serveur
 //$url = 'http://www.proverbes-francais.fr/proverbes-francais/'; //302
-$url = "http://citation-celebre.leparisien.fr/proverbe/francais";
+//$url = "http://citation-celebre.leparisien.fr/proverbe/francais";
+$url = 'http://www.poesie-poemes.com/citations-latines.php';
 $curl = curl_init($url);
 
 // CURLOPT_RETURNTRANSFER => 1 permet de transfèr la rep HTTP dans une variable
@@ -33,21 +34,27 @@ curl_setopt_array($curl, array(
 
 $res = curl_exec($curl);
 //echo mb_detect_encoding($res);
+//echo $res;
 
 //echo htmlspecialchars($res);
 //echo substr(htmlentities($res), 0, 50);
 
 //$pattern = "/<q><a href=\"http:\/\/citation-celebre.leparisien.fr\/citations\/\d+\"\stitle=\"Voir la source de la citation\">(\s*\w+\'?,?\s*)+/u";
-
 //$pattern = "/(\s*\w+\'?,?\s*)+/u";
 //$pattern = "/\p{L}+/ui";
 //$pattern = "/\p{L}(\p{L}+[- ']?)*\p{L}/";
 //$pattern = "/(\p{L},?[- ']?)+/u";
 //$pattern = "/((&ecirc;)?\p{L},?[- ']?)+\.<\/a>/u";
+//$pattern = '/d&#0*39;aboyer/'; //aboyer => &#0*39 apostrophe en ASCII
 //$pattern = '/emp&ecirc;cher/';
 //$pattern = '/\'aboyer/'; //&apos;
-$pattern = "/\.*<\/a>/u";
-//$res = "Quand la pauvreté entre par la porte, l'amour s'en va par la fenêtre.";
+//$pattern = "/\.*<\/a>/u";
+//$pattern="/^([A-Za-z \-]+(?:\'|&#0*39;)*)*[A-Za-z \-]+$/";
+//$pattern="/d&#0*39;aboyer+/u";
+//$pattern = '/<p>(\s*\w+\s*)+/';
+//$pattern = '/<p>[A-Za-z ,æ]+<br \/>/'; OK
+
+$pattern = '/(?<=<p>)[A-Za-z ,æ]+/';
 preg_match_all($pattern, $res, $matches);
 
 ?>

@@ -1,0 +1,2 @@
+https://magic.wizards.com/en/products/rivals-ixalan/cards
+node: card avec title et image

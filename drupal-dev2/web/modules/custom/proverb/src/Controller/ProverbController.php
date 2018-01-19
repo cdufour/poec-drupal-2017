@@ -259,11 +259,13 @@ class ProverbController extends ControllerBase {
   }
 
   public function test() {
+
+    return $this->testFile();
     // On courcircuite le système de rendu Drupal
     // Aucun template n'est rendu dans la réponse client
     // return new Response('Exemple: renvoyer données au format JSON...');
 
-    return $this->assignCategory();
+    //return $this->assignCategory();
 
     $out = [];
 
@@ -348,4 +350,35 @@ class ProverbController extends ControllerBase {
     return [];
   }
 
+  public function testFile() {
+    // chargements des articles
+    $nids = \Drupal::entityQuery('node')
+      ->condition('type', 'article')
+      ->execute();
+    $articles = Node::loadMultiple($nids);
+
+    $out = [];
+    foreach($articles as $article) {
+      $fid = $article->get('field_image')->target_id;
+      if (isset($fid)) {
+        $file = \Drupal\file\Entity\File::load($fid);
+        $img_render = array(
+          '#theme' => 'image_style',
+          '#style_name' => 'thumbnail',
+          '#uri' => $file->getFileUri()
+        );
+        $out[] = $img_render;
+      }
+
+    }
+   $out[] = ['#markup' => 'blabla'];
+
+   // enregistrer une image
+   $image_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/1986-87_Serie_A_-_SSC_Napoli_v_Juventus_FC_-_Michel_Platini.jpg/280px-1986-87_Serie_A_-_SSC_Napoli_v_Juventus_FC_-_Michel_Platini.jpg';
+   $factory = \Drupal::service('image.factory');
+   $image = $factory->get($image_url); // get permet de récupérer une image interne ou externe
+   $image->scale(100); // mise à échelle largeur, hauteur
+   $image->save('public://platiniiiiiii.jpg'); // enregistre l'iamge externe dans le dossier public (sites/default/files)
+   return $out;
+  }
 }
